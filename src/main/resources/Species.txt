@@ -1,0 +1,37 @@
+Arabidopsis thaliana	thale cress	3702	
+Oryza nivara	null	4536	
+Schizosaccharomyces pombe	fission yeast	4896	
+Caenorhabditis elegans	nematode	6239	
+Drosophila melanogaster	fruit fly	7227	
+Danio rerio	zebrafish	7955	
+Gallus gallus	chicken	9031	
+Homo sapiens	human	9606	
+Bos taurus	cattle	9913	
+Mus musculus	house mouse	10090	
+Rattus norvegicus	Norway rat	10116	
+Plasmodium falciparum 3D7	null	36329	
+Oryza sativa Indica Group	Indian rice	39946	
+Oryza sativa Japonica Group	Japanese rice	39947	
+Agrobacterium tumefaciens str. C58	null	176299	
+Trypanosoma brucei TREU927	null	185431	
+Campylobacter jejuni RM1221	null	195099	
+Bacillus anthracis str. Ames	null	198094	
+Ehrlichia chaffeensis str. Arkansas	null	205920	
+Shewanella oneidensis MR-1	null	211586	
+Anaplasma phagocytophilum HZ	null	212042	
+Cryptococcus neoformans var. neoformans JEC21	null	214684	
+Neorickettsia sennetsu str. Miyayama	null	222891	
+Pseudomonas syringae pv. tomato str. DC3000	null	223283	
+Aspergillus nidulans FGSC A4	null	227321	
+Coxiella burnetii RSA 493	null	227377	
+Anaplasma marginale str. St. Maries	null	234826	
+Magnaporthe oryzae 70-15	null	242507	
+Dehalococcoides ethenogenes 195	null	243164	
+Geobacter sulfurreducens PCA	null	243231	
+Methylococcus capsulatus str. Bath	null	243233	
+Carboxydothermus hydrogenoformans Z-2901	null	246194	
+Ruegeria pomeroyi DSS-3	null	246200	
+Listeria monocytogenes serotype 4b str. F2365	null	265669	
+Dictyostelium discoideum AX4	null	352472	
+Escherichia coli str. K-12 substr. MG1655	null	511145	
+Saccharomyces cerevisiae S288c	null	559292	
