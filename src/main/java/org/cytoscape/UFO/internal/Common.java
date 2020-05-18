@@ -20,6 +20,8 @@ import java.util.Stack;
 import java.util.TreeMap;
 import java.util.TreeSet;
 import javax.swing.JOptionPane;
+//import org.apache.commons.math3.stat.inference.AlternativeHypothesis;
+//import org.apache.commons.math3.stat.inference.BinomialTest;
 import org.cytoscape.UFO.Base.GENE;
 import org.cytoscape.UFO.Base.GO;
 import org.cytoscape.UFO.Base.Interaction;
@@ -47,7 +49,7 @@ import org.cytoscape.view.vizmap.mappings.PassthroughMapping;
  *
  * @author "MinhDA"
  */
-class Common {
+public class Common {
 
     public static void preprocessGeneList(ArrayList<GENE> Genes, String By){
         int i;
@@ -256,6 +258,96 @@ class Common {
         }
         return DAG;
     }
+    
+    public static Map<String, Term> loadOntologyData_ForMapping(String FileName) {
+        Map<String, Term> TermID2InfoMap = new TreeMap<String, Term>();
+        try{
+            int i,j;
+            
+            
+            BufferedReader br = new BufferedReader(new FileReader(FileName));
+            String str = null;
+
+            ArrayList<String> TermBlockList = new ArrayList<String>();
+            while ((str = br.readLine()) != null) {
+                if(str.trim().compareTo("[Term]")==0){
+                    
+                    String TermBlock ="";
+                    while(true){
+                        str = br.readLine().trim();
+                        if(str.compareTo("[Term]")!=0 && !str.isEmpty()){
+                            TermBlock = TermBlock.concat(str);
+                            TermBlock = TermBlock.concat("\n");
+                        }else{
+                            break;
+                        }
+                    }
+                        
+                    TermBlockList.add(TermBlock);
+                    
+                }
+            }
+            
+            System.out.println("TermBlockList.size() :" + TermBlockList.size());
+            
+            
+            //PrintWriter pw = new PrintWriter(new FileOutputStream(FileName + "_DAG.txt"),true);
+
+            
+            for(i=0;i<TermBlockList.size();i++){
+                String[] TermLine = TermBlockList.get(i).split("\n");
+                String id = TermLine[0].substring("id:".length()+1, TermLine[0].length());
+                String NodeSrc = id;
+                String TermName = "";
+                String Type = "";
+                boolean is_obsolete = false;
+                
+                for(j=1;j<TermLine.length;j++){
+                    if(TermLine[j].contains("name:")){
+                        TermName = TermLine[j].substring("name:".length()+1, TermLine[j].length());
+                        break;
+                    }
+                }
+                
+                for(j=1;j<TermLine.length;j++){
+                    if(TermLine[j].contains("namespace:")){
+                        Type = TermLine[j].substring("namespace:".length()+1, TermLine[j].length());
+                        break;
+                    }
+                }
+                
+                for(j=1;j<TermLine.length;j++){
+                    if(TermLine[j].contains("is_obsolete:")){
+                        is_obsolete = true;
+                        break;
+                    }
+                }
+                
+                Set<String> MeSHIDSet = new TreeSet<>();
+                for(j=1;j<TermLine.length;j++){
+                    if(TermLine[j].contains("xref: MESH:")){
+                        String MeSHID = TermLine[j].substring("xref: MESH:".length(), TermLine[j].length());
+                        MeSHIDSet.add(MeSHID);
+                    }
+                }
+                Term t = new Term();
+                t.ID = id;
+                t.Name = TermName;
+                t.Type = Type;
+                t.Obsolete = is_obsolete;
+                t.MappedIDSet.addAll(MeSHIDSet);
+                
+                TermID2InfoMap.put(id, t);
+                
+            }
+            
+            
+            //pw.close();
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return TermID2InfoMap;
+    }
 
     public static Map<String,ArrayList<TermIDEvidenceID>> loadAnnotationData(String FileName){
         
@@ -263,7 +355,7 @@ class Common {
         try{
             BufferedReader br = new BufferedReader(new FileReader(FileName));
             String str="";
-            str = br.readLine();//Ignore first line
+            //str = br.readLine();//Ignore first line
             while ((str = br.readLine()) != null) {
                 String[] s = str.split("\t");
                 String ObjectID = s[0].trim();
@@ -1763,7 +1855,7 @@ class Common {
     }
     
     //http://math.stackexchange.com/questions/330553/proof-that-the-hypergeometric-distribution-with-large-n-approaches-the-binomia
-    public static double getProbOfHypergeometric(int N, int n, int K, int k){
+    public static double getProbOfHypergeometricTest(int N, int n, int K, int k){
         
         int i;
         double product1=1;
@@ -1780,19 +1872,48 @@ class Common {
         return getCombination(k,n)*product1*product2;
     }
     
-    //int N=9048;//Number of gene in genome
-    //int n=114;//Number of gene in Genome which are annotated by the TermID
-    //int K=16;//Number of gene in the gene set of interest
-    //int k=1;//Number of gene in the gene set of interest which are annotated by the TermID
+    
+    //https://en.wikipedia.org/wiki/Hypergeometric_distribution#Hypergeometric_test
+    //int N=9048;//Number of gene in genome (population of size)
+    //int K=114;//Number of gene in Genome which are annotated by the TermID
+    //int n=16;//Number of gene in the gene set of interest (number of draws)
+    //int k=1;//Number of gene in the gene set of interest which are annotated by the TermID (number of successes)
     
     //====> Can be used to test whether or not the overlap between two set of genes is statistically significant
-    public static double getPvalueByHypergeometricTest(int N, int n, int K, int k){
+    public static double getPvalueByHypergeometricTest_Over(int N, int n, int K, int k){
         int i;
         int min = (n>K)?K:n;
         double Pvalue = 0.0;
         for(i=k;i<=min;i++){
-            Pvalue+=Common.getProbOfHypergeometric(N, n, K, i);
+            Pvalue+=Common.getProbOfHypergeometricTest(N, n, K, i);
         }
+        return Pvalue;
+    }
+    
+    //Ref: http://cogsci.ucsd.edu/~dgroppe/STATZ/binomial_ztest.pdf
+    
+    public static double getPvalueByBinomialTest(int numberOfTrials, int numberOfSuccesses, double probability){
+        int i;
+        
+        double Pvalue = 0.0;
+        
+        Pvalue=getCombination(numberOfSuccesses,numberOfTrials)*Math.pow(probability, numberOfSuccesses)*Math.pow(1-probability, numberOfTrials-numberOfSuccesses); 
+        
+        return Pvalue;
+    }
+    
+    
+    public static double getPvalueByBinomialTest_CommonsMath3(int numberOfTrials, int numberOfSuccesses, double probability){
+        int i;
+        
+        double Pvalue = 0.0;
+        
+        
+        //AlternativeHypothesis can be GREATER_THAN, LESS_THAN, TWO_SIDED
+        
+//        BinomialTest BT = new BinomialTest();
+//        Pvalue = BT.binomialTest(numberOfTrials, numberOfSuccesses, probability, AlternativeHypothesis.TWO_SIDED);
+        
         return Pvalue;
     }
     
@@ -1805,7 +1926,7 @@ class Common {
     
     public static double getPvalueByFishersExactTest(int N, int n, int K, int k){
         double Pvalue = 0.0;
-        Pvalue=Common.getProbOfHypergeometric(N, n, K, k);
+        Pvalue=Common.getProbOfHypergeometricTest(N, n, K, k);
         return Pvalue;
     }
     
@@ -1823,18 +1944,21 @@ class Common {
         for(String TermID: DirectAnnTermIDSet){
             int N, n, K, k;
             N = BasicData.Object2TermMap.size();//Number of gene in genome
-            n = BasicData.Term2ObjectMap.get(TermID).size();//Number of gene in Genome which are annotated by the TermID
-            K = ObjectIDList.size();//Number of gene in the gene set of interest
+            K = BasicData.Term2ObjectMap.get(TermID).size();//Number of gene in Genome which are annotated by the TermID
+            n = ObjectIDList.size();//Number of gene in the gene set of interest
 
             Set<String> AnnotatedObjSet = new TreeSet<>();
             AnnotatedObjSet.addAll(BasicData.Term2ObjectMap.get(TermID));
             AnnotatedObjSet.retainAll(ObjectIDList);
             k = AnnotatedObjSet.size();//Number of gene in the gene set of interest which are annotated by the TermID
 
-            //Hypergeometric
+            //Binomial
             double Pvalue = 0.0;
-            if(Method.compareTo("Hypergeometric")==0){
-                Pvalue=Common.getPvalueByHypergeometricTest(N, n, K, k);
+            if(Method.compareTo("Binomial")==0){
+                int numberOfTrials = n;//21
+                int numberOfSuccesses = k;//15
+                double probability = (double)K/N;
+                Pvalue=Common.getPvalueByBinomialTest(numberOfTrials, numberOfSuccesses, probability);
             }else{
                 Pvalue=Common.getPvalueByFishersExactTest(N, n, K, k);
             }

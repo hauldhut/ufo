@@ -120,7 +120,7 @@
               <Font name="Tahoma" size="11" style="0"/>
             </Property>
             <Property name="rows" type="int" value="5"/>
-            <Property name="text" type="java.lang.String" value="Author:&#x9;Duc-Hau Le &#xa;Email:&#x9;hauldhut@gmail.com&#x9;Tel:    (+84)912.324564&#xa;Affiliation: &#x9;School of Computer Science and Engineering, Thuyloi University.&#xa;Address:       175 Tay Son, Dong Da, Hanoi, Vietnam. &#xa;&#xa;Acknowledgement: Thanks to Ba-Su Pham, Anh-Minh Dao for porting it from Cytoscape 2.x to 3.x&#xa;"/>
+            <Property name="text" type="java.lang.String" value="Author:&#x9;Duc-Hau Le &#xa;Email:&#x9;hauldhut@gmail.com&#x9;Tel:    (+84)912.324564&#xa;Affiliation: &#x9;Department of Computational Biomedicine, Vingroup Big Data Institute, Hanoi, Vietnam.&#xa;&#xa;Acknowledgement: Thanks to Ba-Su Pham, Anh-Minh Dao for partially porting it from Cytoscape 2.x to 3.x&#xa;"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                 <TitledBorder/>

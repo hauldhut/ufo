@@ -224,7 +224,7 @@ public class ExtractAnnotationDialog extends javax.swing.JDialog {
             String Species = cboSpecies.getSelectedItem().toString();
             int SpeciesID = Integer.parseInt(Species.substring(Species.indexOf("-") + 2, Species.length()));
             
-            OutputFile = "Data\\Annotation_Gene2GO_" + SpeciesID + "_" + SubOntology + ".txt";
+            OutputFile = "Data/Annotation_Gene2GO_" + SpeciesID + "_" + SubOntology + ".txt";
             lblExtractedAnnotationFile.setText(new File(OutputFile).getAbsolutePath());
             
             Common.ExtractGene2GORelation(SubOntology, SpeciesID, AnnotationFile, OutputFile);
@@ -232,12 +232,12 @@ public class ExtractAnnotationDialog extends javax.swing.JDialog {
         }else if(cboAnnotationType.getSelectedIndex()==1){
             String DiseaseSource = "";
             DiseaseSource = cboDiseaseSource.getSelectedItem().toString();
-            OutputFile = "Data\\Annotation_OMIM2HPO_" + DiseaseSource + ".txt";
+            OutputFile = "Data/Annotation_OMIM2HPO_" + DiseaseSource + ".txt";
             lblExtractedAnnotationFile.setText(new File(OutputFile).getAbsolutePath());
             
             Common.ExtractOMIM2HPORelation(DiseaseSource, AnnotationFile, OutputFile);
         }else{
-            OutputFile = "Data\\Annotation_Gene2DO.txt";
+            OutputFile = "Data/Annotation_Gene2DO.txt";
             lblExtractedAnnotationFile.setText(new File(OutputFile).getAbsolutePath());
             
             Common.ExtractGene2DORelation(AnnotationFile, OutputFile);
@@ -262,7 +262,7 @@ public class ExtractAnnotationDialog extends javax.swing.JDialog {
             this.cboSpecies.setVisible(true);
             this.lblSpecies.setVisible(true);
             
-            txtAnnotationFile.setText("Data\\gene2go");
+            txtAnnotationFile.setText("Data/gene2go");
 
         }else if(this.cboAnnotationType.getSelectedIndex()==1){//HPO
             this.cboSubOntology.setVisible(false);
@@ -274,7 +274,7 @@ public class ExtractAnnotationDialog extends javax.swing.JDialog {
             this.cboSpecies.setVisible(false);
             this.lblSpecies.setVisible(false);
             
-            txtAnnotationFile.setText("Data\\phenotype_annotation_hpoteam.tab");
+            txtAnnotationFile.setText("Data/phenotype_annotation_hpoteam.tab");
 
         }else if(this.cboAnnotationType.getSelectedIndex()==2){//DO
             this.cboSubOntology.setVisible(false);
@@ -286,7 +286,7 @@ public class ExtractAnnotationDialog extends javax.swing.JDialog {
             this.cboSpecies.setVisible(false);
             this.lblSpecies.setVisible(false);
             
-            txtAnnotationFile.setText("Data\\DBAR_Ver.txt");
+            txtAnnotationFile.setText("Data/DBAR_Ver.txt");
         }
 
     }//GEN-LAST:event_cboAnnotationTypeActionPerformed

@@ -5,6 +5,9 @@
  */
 package org.cytoscape.UFO.Base;
 
+import java.util.Set;
+import java.util.TreeSet;
+
 /**
  *
  * @author "MinhDA"
@@ -14,12 +17,14 @@ public class Term {
     public String Name;
     public boolean Obsolete;
     public String Type;
+    public Set<String> MappedIDSet;
     
     public Term(){
         this.ID ="";
         this.Name = "";
         this.Obsolete = true;
         this.Type ="";
+        this.MappedIDSet=new TreeSet<>();
     }
     
     public Term(String ID, String name, boolean obs, String type){

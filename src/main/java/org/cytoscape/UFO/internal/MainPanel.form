@@ -1211,7 +1211,7 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="optHypergeometric" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="optBinomial" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="optFishersExact" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -1221,7 +1221,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="optHypergeometric" min="-2" max="-2" attributes="0"/>
+                                      <Component id="optBinomial" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Component id="optFishersExact" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
@@ -1230,13 +1230,13 @@
                             </DimensionLayout>
                           </Layout>
                           <SubComponents>
-                            <Component class="javax.swing.JRadioButton" name="optHypergeometric">
+                            <Component class="javax.swing.JRadioButton" name="optBinomial">
                               <Properties>
                                 <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                                   <ComponentRef name="StatisticalTestGroup"/>
                                 </Property>
                                 <Property name="selected" type="boolean" value="true"/>
-                                <Property name="text" type="java.lang.String" value="Hypergeometric"/>
+                                <Property name="text" type="java.lang.String" value="Binomial"/>
                               </Properties>
                               <AuxValues>
                                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -1273,7 +1273,7 @@
                                           <Component id="optBonferroni" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="optBenjaminiHochberg" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <EmptySpace pref="28" max="32767" attributes="0"/>
+                                      <EmptySpace pref="42" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>

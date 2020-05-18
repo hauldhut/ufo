@@ -254,7 +254,7 @@ public class MainPanel extends javax.swing.JPanel implements CytoPanelComponent 
         chkObjectNameView = new javax.swing.JCheckBox();
         jPanel10 = new javax.swing.JPanel();
         jPanel11 = new javax.swing.JPanel();
-        optHypergeometric = new javax.swing.JRadioButton();
+        optBinomial = new javax.swing.JRadioButton();
         optFishersExact = new javax.swing.JRadioButton();
         jPanel12 = new javax.swing.JPanel();
         optBonferroni = new javax.swing.JRadioButton();
@@ -705,7 +705,7 @@ public class MainPanel extends javax.swing.JPanel implements CytoPanelComponent 
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tPnlTerm, javax.swing.GroupLayout.DEFAULT_SIZE, 420, Short.MAX_VALUE)
+            .addComponent(tPnlTerm, javax.swing.GroupLayout.PREFERRED_SIZE, 420, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -908,9 +908,9 @@ public class MainPanel extends javax.swing.JPanel implements CytoPanelComponent 
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder("Statistical Test")));
 
-        StatisticalTestGroup.add(optHypergeometric);
-        optHypergeometric.setSelected(true);
-        optHypergeometric.setText("Hypergeometric");
+        StatisticalTestGroup.add(optBinomial);
+        optBinomial.setSelected(true);
+        optBinomial.setText("Binomial");
 
         StatisticalTestGroup.add(optFishersExact);
         optFishersExact.setText("Fisher's Exact");
@@ -922,14 +922,14 @@ public class MainPanel extends javax.swing.JPanel implements CytoPanelComponent 
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(optHypergeometric)
+                    .addComponent(optBinomial)
                     .addComponent(optFishersExact)))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(optHypergeometric)
+                .addComponent(optBinomial)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(optFishersExact)
                 .addGap(50, 50, 50))
@@ -953,7 +953,7 @@ public class MainPanel extends javax.swing.JPanel implements CytoPanelComponent 
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(optBonferroni)
                     .addComponent(optBenjaminiHochberg))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1025,7 +1025,7 @@ public class MainPanel extends javax.swing.JPanel implements CytoPanelComponent 
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addGap(14, 14, 14)
                 .addComponent(btnEnrichmentAnalysis)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1202,7 +1202,7 @@ public class MainPanel extends javax.swing.JPanel implements CytoPanelComponent 
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtMaxFunSim))
-                    .addComponent(pnlEntityNet, javax.swing.GroupLayout.DEFAULT_SIZE, 341, Short.MAX_VALUE))
+                    .addComponent(pnlEntityNet, javax.swing.GroupLayout.PREFERRED_SIZE, 341, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlObjSim1Layout.setVerticalGroup(
@@ -1424,7 +1424,7 @@ public class MainPanel extends javax.swing.JPanel implements CytoPanelComponent 
         }
 
         String Method = "";
-        if (optHypergeometric.isSelected()) {
+        if (optBinomial.isSelected()) {
             Method = "Hypergeometric";
         }
 
@@ -2722,9 +2722,9 @@ public class MainPanel extends javax.swing.JPanel implements CytoPanelComponent 
     public static javax.swing.JLabel lblObjectInputStatus;
     public static javax.swing.JLabel lblTermInputStatus;
     public static javax.swing.JRadioButton optBenjaminiHochberg;
+    public static javax.swing.JRadioButton optBinomial;
     public static javax.swing.JRadioButton optBonferroni;
     public static javax.swing.JRadioButton optFishersExact;
-    public static javax.swing.JRadioButton optHypergeometric;
     private javax.swing.JPanel pnlEntityNet;
     public static javax.swing.JPanel pnlEntitySets;
     private javax.swing.JPanel pnlObjSim;

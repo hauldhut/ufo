@@ -46,7 +46,7 @@ public class AboutDialog extends javax.swing.JDialog {
         jTextArea1.setColumns(20);
         jTextArea1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         jTextArea1.setRows(5);
-        jTextArea1.setText("Author:\tDuc-Hau Le \nEmail:\thauldhut@gmail.com\tTel:    (+84)912.324564\nAffiliation: \tSchool of Computer Science and Engineering, Thuyloi University.\nAddress:       175 Tay Son, Dong Da, Hanoi, Vietnam. \n\nAcknowledgement: Thanks to Ba-Su Pham, Anh-Minh Dao for porting it from Cytoscape 2.x to 3.x\n");
+        jTextArea1.setText("Author:\tDuc-Hau Le \nEmail:\thauldhut@gmail.com\tTel:    (+84)912.324564\nAffiliation: \tDepartment of Computational Biomedicine, Vingroup Big Data Institute, Hanoi, Vietnam.\n\nAcknowledgement: Thanks to Ba-Su Pham, Anh-Minh Dao for partially porting it from Cytoscape 2.x to 3.x\n");
         jTextArea1.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         jScrollPane1.setViewportView(jTextArea1);
 

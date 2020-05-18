@@ -29,8 +29,8 @@ class EnrichmentAnalysisTask implements Task{
             
             int i,j;
             String Method="";
-            if(MainPanel.optHypergeometric.isSelected()){
-                Method="Hypergeometric";
+            if(MainPanel.optBinomial.isSelected()){
+                Method="Binomial";
             }
                                    
             BasicData.Term2PvalueMap = Common.calculateSignificantEnrichmentTerms(BasicData.validSelObjectIDList, Method);
